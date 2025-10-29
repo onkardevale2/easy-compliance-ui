@@ -12,10 +12,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatStep, MatStepper, MatStepperModule } from '@angular/material/stepper';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { SubscriptionComponent } from './subscription/subscription.component';
 @NgModule({
   declarations: [
     AppComponent, DashboardComponent, HeaderComponent, JobExecutionWidgetComponent,
-    BrowseJobsComponent, CreateJobComponent
+    BrowseJobsComponent, CreateJobComponent, SubscriptionComponent
   ],
   imports: [
     BrowserModule, AppRoutingModule, ReactiveFormsModule,MatStepperModule, BrowserAnimationsModule,

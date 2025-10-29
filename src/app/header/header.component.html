@@ -22,7 +22,7 @@
   <a [ngClass]="{'active':selectedPage=='Home'}" href="/"><i class="fa fa-fw fa-home"></i> Home</a>
   <a [ngClass]="{'active':selectedPage=='Create Job'}" href="/create-job">Create Job</a>
   <a [ngClass]="{'active':selectedPage=='Browse Jobs'}" href="/browse-jobs">Browse Jobs</a>
-  <a href="/browse-jobs">Browse Contexts</a>
+  <a [ngClass]="{'active':selectedPage=='Browse Jobs'}" href="/subscriptions">Subscriptions</a>
   <a href="/browse-jobs">Browse Rules</a>
   <button class="dropdown-btn" (click)="openCloseMenu()">Dropdown 
     <i [ngClass]="open?'fa fa-caret-down': 'fa fa-caret-right'"></i>

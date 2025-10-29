@@ -1,0 +1,35 @@
+<div class="topnav">
+  <div class="hamburger-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div>
+    <img src="./../../assets/logoimage.png" class="logo">
+    
+  </div>
+  
+  <div class="web-title"><span >Easy Compliance</span></div>
+  <div class="welcome"><span >Welcome, George Millon</span></div>
+  <div>
+    <img src="./../../assets/profile.png" class="profile">
+  </div>
+  <div>
+    <img src="./../../assets/setting.png" class="setting">
+  </div>
+ </div>
+<div class="sidebar">
+  <a [ngClass]="{'active':selectedPage=='Home'}" href="/"><i class="fa fa-fw fa-home"></i> Home</a>
+  <a [ngClass]="{'active':selectedPage=='Create Job'}" href="/create-job">Create Job</a>
+  <a [ngClass]="{'active':selectedPage=='Browse Jobs'}" href="/browse-jobs">Browse Jobs</a>
+  <a href="/browse-jobs">Browse Contexts</a>
+  <a href="/browse-jobs">Browse Rules</a>
+  <button class="dropdown-btn" (click)="openCloseMenu()">Dropdown 
+    <i [ngClass]="open?'fa fa-caret-down': 'fa fa-caret-right'"></i>
+  </button>
+  <div [ngClass]="open?'dropdown-container': 'dropdown-container-closed'">
+    <a href="#">Link 1</a>
+    <a href="#">Link 2</a>
+    <a href="#">Link 3</a>
+  </div>
+</div>

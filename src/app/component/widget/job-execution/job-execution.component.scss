@@ -1,0 +1,35 @@
+.my-widget {
+    width: 300px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
+  
+  .widget-header {
+    background-color: #337ab7;
+    color: white;
+    padding: 10px 15px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+  }
+  
+  .widget-header h3 {
+    margin: 0;
+    font-size: 1.2em;
+  }
+  
+  .widget-content {
+    padding: 15px;
+  }
+  
+  .widget-button {
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+  }

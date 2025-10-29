@@ -1,0 +1,75 @@
+<app-header></app-header>
+<div class="content">
+  <h2>{{title}}</h2>
+  <mat-stepper [linear]="true" #stepper>
+    <mat-step label="Step 1">
+      <span>Create context</span>
+    </mat-step>
+    <mat-step label="Step 2">
+      <span>Create rule</span>
+    </mat-step>
+    </mat-stepper>
+  <!--<div class="md-stepper-horizontal orange">
+    <div class="md-step active done">
+      <div class="md-step-circle"><span>1</span></div>
+      <div class="md-step-title">Create Context</div>
+      <div class="md-step-bar-left"></div>
+      <div class="md-step-bar-right"></div>
+    </div>
+    <div class="md-step active editable">
+      <div class="md-step-circle"><span>2</span></div>
+      <div class="md-step-title">Create Rule</div>
+      <div class="md-step-optional">Optional</div>
+      <div class="md-step-bar-left"></div>
+      <div class="md-step-bar-right"></div>
+    </div>
+    <div class="md-step active">
+      <div class="md-step-circle"><span>3</span></div>
+      <div class="md-step-title">Map Rule to Context</div>
+      <div class="md-step-bar-left"></div>
+      <div class="md-step-bar-right"></div>
+    </div>
+    <div class="md-step active">
+      <div class="md-step-circle"><span>4</span></div>
+      <div class="md-step-title">Create Job</div>
+      <div class="md-step-bar-left"></div>
+      <div class="md-step-bar-right"></div>
+    </div>
+    <div class="md-step">
+      <div class="md-step-circle"><span>4</span></div>
+      <div class="md-step-title">Review</div>
+      <div class="md-step-bar-left"></div>
+      <div class="md-step-bar-right"></div>
+    </div>
+  </div>-->
+
+
+  <div class="responsive-form">
+
+    <div disabled="!enableContextForm">
+      <form [formGroup]="contextForm" (ngSubmit)="onSubmit()">
+
+        <label for="name">Name:</label>
+        <input id="name" type="text" formControlName="name">
+        <label for="dataSubjectCategory">Data Subject Category:</label>
+        <input id="dataSubjectCategory" type="text" formControlName="dataSubjectCategory">
+        <button>Back</button>
+        <button type="submit" [disabled]="contextForm.invalid">Submit</button>
+      </form>
+    </div>
+
+    <div disabled="true">
+      <form [formGroup]="ruleForm" (ngSubmit)="onSubmit()">
+
+        <label for="name">Name:</label>
+        <input id="name" type="text" formControlName="name">
+        <label for="rismaProcess">Risma Process:</label>
+        <input id="rismaProcess" type="text" formControlName="rismaProcess">
+        <button>Back</button>
+        <button type="submit" [disabled]="contextForm.invalid">Submit</button>
+      </form>
+    </div>
+
+
+  </div>
+</div>

@@ -1,0 +1,104 @@
+.logo {
+    height: 30px;
+    margin: 5px 5px 0px 5px;
+}
+
+.profile {
+    height: 20px;
+    margin: 5px 5px 0px 5px;
+    cursor: pointer;
+}
+
+.setting {
+    height: 18px;
+    margin: 5px 5px 0px 5px;
+    cursor: pointer;
+}
+
+
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 175px;
+    background-color: #000000;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    margin-top: 5px;
+    left:0;
+}
+
+.sidebar a,
+.dropdown-btn {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 14px;
+    color: #ffffff;
+    display: block;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    line-height: 20px;
+}
+
+
+.sidebar a.active {
+    background-color: #1e88d9;
+    color: white;
+}
+
+.sidebar a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+
+.topnav {
+    display: flex;
+    overflow: hidden;
+    background-color: #ffffff;
+    margin-bottom: 2px;
+    line-height: 20px;
+    align-items: center;
+    border-bottom-color: #b4aeae;
+    border-bottom-style: solid;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    left: 0;
+}
+
+
+/* Add an active class to the active dropdown button */
+.active {
+    background-color: green;
+    color: white;
+}
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+    display: block;
+    background-color: #262626;
+    padding-left: 8px;
+}
+
+.dropdown-container-closed {
+    display: none;
+    background-color: #262626;
+    padding-left: 8px;
+}
+
+/* Optional: Style the caret down icon */
+.fa-caret-down,
+.fa-caret-right {
+    float: right;
+    padding-right: 8px;
+    padding-top: 4px;
+}
+
+/* On mouse-over */
+.sidenav a:hover,
+.dropdown-btn:hover {
+    color: #f1f1f1;
+}

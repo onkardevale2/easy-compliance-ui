@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowseJobsComponent } from './browse-jobs/browse-jobs.component';
 import { CreateJobComponent } from './create-job/create-job.component';
+import { SubscriptionComponent } from './subscription/subscription.component';
 
 const routes: Routes = [
 
@@ -14,6 +15,9 @@ const routes: Routes = [
   },
   {
     path: 'create-job', component: CreateJobComponent
+  },
+  {
+    path: 'subscriptions', component: SubscriptionComponent
   }
 ];
 

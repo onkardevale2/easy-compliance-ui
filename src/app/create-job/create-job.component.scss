@@ -1,195 +1,81 @@
-* {
-  box-sizing: border-box;
+/* src/app/my-form/my-form.component.css */
+.form-container {
+    max-width: 600px;
+    margin-top: 30px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    font-size: 14px;
 }
 
-.responsive-form {
-  max-width: 600px;
-  width: 100%;
-  border-radius: 4px;
-  border: 2px solid #04AA6D;
-  ;
-  background-color: #f2f2f2;
-  padding: 20px;
+h3 {
+    margin-top: 115px;
+    color: #11588f;
 }
 
-form {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: left;
+.summary {
+    margin-top: 115px;
+    display: flex;
+    border-color: black;
+    background-color: whitesmoke;
+    padding: 10px;
+    border-radius: 5px;
+
+    span {
+        padding: 15px;
+    }
+}
+
+
+.form-group {
+    margin-bottom: 15px;
 }
 
 label {
-  min-width: 48%;
-  margin-bottom: 10px;
+    display: block;
+    margin-bottom: 10px;
+
 }
 
-input[type=text],
-select {
-  min-width: 45%;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 10px;
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    /* Ensures padding doesn't add to total width */
 }
 
 textarea {
-  min-width: 45%;
-  height: 150px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 10px;
+    resize: vertical;
+    /* Allow vertical resizing */
+    min-height: 100px;
 }
 
 .error-message {
-  color: red;
-  font-size: 0.8em;
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
 }
 
-input[type=submit] {
-  width: 100%;
-  background-color: #04AA6D;
-  color: white;
-  padding: 14px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .form-container {
+        margin-top: 10px;
+        padding: 15px;
+    }
 }
 
-.md-stepper-horizontal {
-	display:table;
-	width:100%;
-	margin:0 auto;
-	background-color:#FFFFFF;
-	box-shadow: 0 3px 8px -6px rgba(0,0,0,.50);
-}
-.md-stepper-horizontal .md-step {
-	display:table-cell;
-	position:relative;
-	padding:24px;
-}
-.md-stepper-horizontal .md-step:hover,
-.md-stepper-horizontal .md-step:active {
-	background-color:rgba(0,0,0,0.04);
-}
-.md-stepper-horizontal .md-step:active {
-	border-radius: 15% / 75%;
-}
-.md-stepper-horizontal .md-step:first-child:active {
-	border-top-left-radius: 0;
-	border-bottom-left-radius: 0;
-}
-.md-stepper-horizontal .md-step:last-child:active {
-	border-top-right-radius: 0;
-	border-bottom-right-radius: 0;
-}
-.md-stepper-horizontal .md-step:hover .md-step-circle {
-	background-color:#757575;
-}
-.md-stepper-horizontal .md-step:first-child .md-step-bar-left,
-.md-stepper-horizontal .md-step:last-child .md-step-bar-right {
-	display:none;
-}
-.md-stepper-horizontal .md-step .md-step-circle {
-	width:30px;
-	height:30px;
-	margin:0 auto;
-	background-color:#999999;
-	border-radius: 50%;
-	text-align: center;
-	line-height:30px;
-	font-size: 16px;
-	font-weight: 600;
-	color:#FFFFFF;
-}
-.md-stepper-horizontal.green .md-step.active .md-step-circle {
-	background-color:#00AE4D;
-}
-.md-stepper-horizontal.orange .md-step.active .md-step-circle {
-	background-color:#0250f9;
-}
-.md-stepper-horizontal .md-step.active .md-step-circle {
-	background-color: rgb(33,150,243);
-}
-.md-stepper-horizontal .md-step.done .md-step-circle:before {
-	font-family:'FontAwesome';
-	font-weight:100;
-	content: "\f00c";
-}
-.md-stepper-horizontal .md-step.done .md-step-circle *,
-.md-stepper-horizontal .md-step.editable .md-step-circle * {
-	display:none;
-}
-.md-stepper-horizontal .md-step.editable .md-step-circle {
-	-moz-transform: scaleX(-1);
-	-o-transform: scaleX(-1);
-	-webkit-transform: scaleX(-1);
-	transform: scaleX(-1);
-}
-.md-stepper-horizontal .md-step.editable .md-step-circle:before {
-	font-family:'FontAwesome';
-	font-weight:100;
-	content: "\f040";
-}
-.md-stepper-horizontal .md-step .md-step-title {
-	margin-top:16px;
-	font-size:16px;
-	font-weight:600;
-}
-.md-stepper-horizontal .md-step .md-step-title,
-.md-stepper-horizontal .md-step .md-step-optional {
-	text-align: center;
-	color:rgba(0,0,0,.26);
-}
-.md-stepper-horizontal .md-step.active .md-step-title {
-	font-weight: 600;
-	color:rgba(0,0,0,.87);
-}
-.md-stepper-horizontal .md-step.active.done .md-step-title,
-.md-stepper-horizontal .md-step.active.editable .md-step-title {
-	font-weight:600;
-}
-.md-stepper-horizontal .md-step .md-step-optional {
-	font-size:12px;
-}
-.md-stepper-horizontal .md-step.active .md-step-optional {
-	color:rgba(0,0,0,.54);
-}
-.md-stepper-horizontal .md-step .md-step-bar-left,
-.md-stepper-horizontal .md-step .md-step-bar-right {
-	position:absolute;
-	top:36px;
-	height:1px;
-	border-top:1px solid #DDDDDD;
-}
-.md-stepper-horizontal .md-step .md-step-bar-right {
-	right:0;
-	left:50%;
-	margin-left:20px;
-}
-.md-stepper-horizontal .md-step .md-step-bar-left {
-	left:0;
-	right:50%;
-	margin-right:20px;
-}
+@media (max-width: 480px) {
+    .form-container {
+        padding: 10px;
+    }
 
-.step.complete {
-  background-color: #4ddc30;
-  color: white;
-  font-weight: bold;
-}
-
-
-
-@media screen and (max-width: 600px) {
-
-  label,
-  input[type=text],
-  input[type=submit],
-  select,
-  textarea {
-    flex: 100%;
-    min-width: 100%;
-  }
+    button {
+        width: 100%;
+    }
 }

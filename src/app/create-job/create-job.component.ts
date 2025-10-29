@@ -7,8 +7,8 @@ import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-create-job',
-  templateUrl: './create-job-stepper.component.html',
-  styleUrls: ['./create-job-stepper.component.scss']
+  templateUrl: './create-job.component.html',
+  styleUrls: ['./create-job.component.scss']
 })
 export class CreateJobComponent {
   title = 'Create Job';

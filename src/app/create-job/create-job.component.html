@@ -1,75 +1,255 @@
-<app-header></app-header>
+<app-header [selectedPage]="title"></app-header>
 <div class="content">
-  <h2>{{title}}</h2>
-  <mat-stepper [linear]="true" #stepper>
-    <mat-step label="Step 1">
-      <span>Create context</span>
+
+  <mat-horizontal-stepper [labelPosition]="'bottom'" [linear]="true" #stepper>
+    <mat-step label="Create Context" [editable]="false">
+      <!-- Content for Step 1 -->
+      <div class="responsive-form">
+        <h3>Create Context</h3>
+        <!-- src/app/my-form/my-form.component.html -->
+        <div class="form-container">
+          <form [formGroup]="contextForm">
+            <div class="form-group">
+              <label for="name">Context Name:</label>
+              <input type="text" id="name" formControlName="name">
+              <div
+                *ngIf="contextForm.get('name')?.invalid && (contextForm.get('name')?.dirty || contextForm.get('name')?.touched)"
+                class="error-message">
+                <div *ngIf="contextForm.get('name')?.errors?.['required']">Name is required.</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="dataSubCategory">Data Subject Category</label>
+              <input type="text" id="dataSubCategory" formControlName="dataSubCategory">
+              <div
+                *ngIf="contextForm.get('dataSubCategory')?.invalid && (contextForm.get('dataSubCategory')?.dirty || contextForm.get('dataSubCategory')?.touched)"
+                class="error-message">
+                <div *ngIf="contextForm.get('dataSubCategory')?.errors?.['required']">Data Subject Category is required.
+                </div>
+                <div *ngIf="contextForm.get('email')?.errors?.['email']">Please enter a valid email.</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="buId">BU id</label>
+
+              <select id="buId" formControlName="buId" class="form-control">
+                <option [ngValue]="null" disabled>-- Select a buId --</option>
+                <option *ngFor="let buId of buIdMap" [ngValue]="buId.value">
+                  {{ buId.label }}
+                </option>
+              </select>
+              <!--<div *ngIf="contextForm.get('buId')?.errors?.['required']">buId is required.</div>-->
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message:</label>
+              <textarea id="message" formControlName="message"></textarea>
+              <div
+                *ngIf="contextForm.get('message')?.invalid && (contextForm.get('message')?.dirty || contextForm.get('message')?.touched)"
+                class="error-message">
+                <div *ngIf="contextForm.get('message')?.errors?.['minlength']">Message must be at least 10 characters.
+                </div>
+              </div>
+            </div>
+
+            <!--<button type="submit" [disabled]="contextForm.invalid">Submit</button>-->
+            <button mat-button [disabled]="contextForm.invalid" (click)="submitFirstStep()">Submit</button>
+            <button type="reset">Reset</button>
+            <button mat-button matStepperNext [disabled]="contextForm.invalid">Next</button>
+          </form>
+        </div>
+      </div>
     </mat-step>
-    <mat-step label="Step 2">
-      <span>Create rule</span>
+    <mat-step label="Create Rule" [editable]="false">
+      <!-- Content for Step 2 -->
+      <h3>Create Rule</h3>
+      <!-- src/app/my-form/my-form.component.html -->
+      <div class="form-container">
+        <form [formGroup]="ruleForm">
+          <div class="form-group">
+            <label for="name">Rule Name:</label>
+            <input type="text" id="name" formControlName="name">
+            <div
+              *ngIf="ruleForm.get('name')?.invalid && (ruleForm.get('name')?.dirty || ruleForm.get('name')?.touched)"
+              class="error-message">
+              <div *ngIf="ruleForm.get('name')?.errors?.['required']">Name is required.</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="integrationType">Integration Type</label>
+            <input type="text" id="integrationType" formControlName="integrationType">
+            <div
+              *ngIf="ruleForm.get('integrationType')?.invalid && (ruleForm.get('integrationType')?.dirty || ruleForm.get('integrationType')?.touched)"
+              class="error-message">
+              <div *ngIf="ruleForm.get('integrationType')?.errors?.['required']">Integration Type is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="retentionPeriod">Retention Period</label>
+            <input type="text" id="retentionPeriod" formControlName="retentionPeriod">
+            <div
+              *ngIf="ruleForm.get('retentionPeriod')?.invalid && (ruleForm.get('retentionPeriod')?.dirty || ruleForm.get('retentionPeriod')?.touched)"
+              class="error-message">
+              <div *ngIf="ruleForm.get('retentionPeriod')?.errors?.['required']">Integration Type is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="dataType">Data Type</label>
+
+            <select id="dataType" formControlName="dataType" class="form-control">
+              <option [ngValue]="null" disabled>-- Select a Data type --</option>
+              <option *ngFor="let dataType of dataTypeMap" [ngValue]="dataType.value">
+                {{ dataType.label }}
+              </option>
+            </select>
+            <!--<div *ngIf="ruleForm.get('buId')?.errors?.['required']">buId is required.</div>-->
+          </div>
+
+          <div class="form-group">
+            <label for="applicationId">Application id</label>
+
+            <select id="applicationId" formControlName="applicationId" class="form-control">
+              <option [ngValue]="null" disabled>-- Select application --</option>
+              <option *ngFor="let applicationId of applicationMap" [ngValue]="applicationId.value">
+                {{ applicationId.label }}
+              </option>
+            </select>
+            <!--<div *ngIf="ruleForm.get('buId')?.errors?.['required']">buId is required.</div>-->
+          </div>
+
+          <div class="form-group">
+            <label for="buId">BU id</label>
+
+            <select id="buId" formControlName="buId" class="form-control">
+              <option [ngValue]="null" disabled>-- Select a buId --</option>
+              <option *ngFor="let buId of buIdMap" [ngValue]="buId.value">
+                {{ buId.label }}
+              </option>
+            </select>
+            <!--<div *ngIf="ruleForm.get('buId')?.errors?.['required']">buId is required.</div>-->
+          </div>
+
+          
+          <!--<button type="submit" [disabled]="ruleForm.invalid">Submit</button>-->
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="submitSecondStep()">Submit</button>
+          <button type="reset">Reset</button>
+          <button mat-button matStepperNext>Next</button>
+        </form>
+      </div>
+      
     </mat-step>
-    </mat-stepper>
-  <!--<div class="md-stepper-horizontal orange">
-    <div class="md-step active done">
-      <div class="md-step-circle"><span>1</span></div>
-      <div class="md-step-title">Create Context</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active editable">
-      <div class="md-step-circle"><span>2</span></div>
-      <div class="md-step-title">Create Rule</div>
-      <div class="md-step-optional">Optional</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active">
-      <div class="md-step-circle"><span>3</span></div>
-      <div class="md-step-title">Map Rule to Context</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active">
-      <div class="md-step-circle"><span>4</span></div>
-      <div class="md-step-title">Create Job</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step">
-      <div class="md-step-circle"><span>4</span></div>
-      <div class="md-step-title">Review</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-  </div>-->
+    <mat-step label="Create Job" [editable]="false">
+      <h3>Create Job</h3>
+      <!-- src/app/my-form/my-form.component.html -->
+      <div class="form-container">
+        <form [formGroup]="ruleForm">
+          <div class="form-group">
+            <label for="name">Rule Name:</label>
+            <input type="text" id="name" formControlName="name">
+            <div
+              *ngIf="ruleForm.get('name')?.invalid && (ruleForm.get('name')?.dirty || ruleForm.get('name')?.touched)"
+              class="error-message">
+              <div *ngIf="ruleForm.get('name')?.errors?.['required']">Name is required.</div>
+            </div>
+          </div>
 
+          <div class="form-group">
+            <label for="integrationType">Integration Type</label>
+            <input type="text" id="integrationType" formControlName="integrationType">
+            <div
+              *ngIf="ruleForm.get('integrationType')?.invalid && (ruleForm.get('integrationType')?.dirty || ruleForm.get('integrationType')?.touched)"
+              class="error-message">
+              <div *ngIf="ruleForm.get('integrationType')?.errors?.['required']">Integration Type is required.
+              </div>
+            </div>
+          </div>
 
-  <div class="responsive-form">
+          <div class="form-group">
+            <label for="retentionPeriod">Retention Period</label>
+            <input type="text" id="retentionPeriod" formControlName="retentionPeriod">
+            <div
+              *ngIf="ruleForm.get('retentionPeriod')?.invalid && (ruleForm.get('retentionPeriod')?.dirty || ruleForm.get('retentionPeriod')?.touched)"
+              class="error-message">
+              <div *ngIf="ruleForm.get('retentionPeriod')?.errors?.['required']">Integration Type is required.
+              </div>
+            </div>
+          </div>
 
-    <div disabled="!enableContextForm">
-      <form [formGroup]="contextForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="dataType">Data Type</label>
 
-        <label for="name">Name:</label>
-        <input id="name" type="text" formControlName="name">
-        <label for="dataSubjectCategory">Data Subject Category:</label>
-        <input id="dataSubjectCategory" type="text" formControlName="dataSubjectCategory">
-        <button>Back</button>
-        <button type="submit" [disabled]="contextForm.invalid">Submit</button>
-      </form>
-    </div>
+            <select id="dataType" formControlName="dataType" class="form-control">
+              <option [ngValue]="null" disabled>-- Select a Data type --</option>
+              <option *ngFor="let dataType of dataTypeMap" [ngValue]="dataType.value">
+                {{ dataType.label }}
+              </option>
+            </select>
+            <!--<div *ngIf="ruleForm.get('buId')?.errors?.['required']">buId is required.</div>-->
+          </div>
 
-    <div disabled="true">
-      <form [formGroup]="ruleForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="applicationId">Application id</label>
 
-        <label for="name">Name:</label>
-        <input id="name" type="text" formControlName="name">
-        <label for="rismaProcess">Risma Process:</label>
-        <input id="rismaProcess" type="text" formControlName="rismaProcess">
-        <button>Back</button>
-        <button type="submit" [disabled]="contextForm.invalid">Submit</button>
-      </form>
-    </div>
+            <select id="applicationId" formControlName="applicationId" class="form-control">
+              <option [ngValue]="null" disabled>-- Select application --</option>
+              <option *ngFor="let applicationId of applicationMap" [ngValue]="applicationId.value">
+                {{ applicationId.label }}
+              </option>
+            </select>
+            <!--<div *ngIf="ruleForm.get('buId')?.errors?.['required']">buId is required.</div>-->
+          </div>
 
+          <div class="form-group">
+            <label for="buId">BU id</label>
 
-  </div>
+            <select id="buId" formControlName="buId" class="form-control">
+              <option [ngValue]="null" disabled>-- Select a buId --</option>
+              <option *ngFor="let buId of buIdMap" [ngValue]="buId.value">
+                {{ buId.label }}
+              </option>
+            </select>
+            <!--<div *ngIf="ruleForm.get('buId')?.errors?.['required']">buId is required.</div>-->
+          </div>
+
+          
+          <!--<button type="submit" [disabled]="ruleForm.invalid">Submit</button>-->
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="submitSecondStep()">Submit</button>
+          <button type="reset">Reset</button>
+          <button mat-button matStepperNext>Next</button>
+        </form>
+      </div>
+    </mat-step>
+    <mat-step label="Summary" [editable]="false">
+      <div *ngIf="successSummary" class="summary">
+        <img src="../../assets/success_summary.png" style="width: 25px;height: 25px;padding: 15px;">
+        <span>Following is summary of submtted details of - context, rule and job!</span>
+      </div>
+      
+      <div class="responsive-form" style="margin-top: 25px;">
+        <label>Context Details</label>
+        <label for="name">Context Name: {{contextForm.get('name')?.value}}</label>
+        <label for="dataSubCategory">Data  Subject Category: {{contextForm.get('dataSubCategory')?.value}}</label>
+        <label for="buId">Data  Subject Category: {{contextForm.get('buId')?.value}}</label>
+
+        <br>
+
+        <label>Rule Details</label>
+        <label for="name">Context Name: {{ruleForm.get('name')?.value}}</label>
+        <label for="integrationType">Integration Type: {{ruleForm.get('integrationType')?.value}}</label>
+        <label for="retentionPeriod">Retention Period: {{ruleForm.get('retentionPeriod')?.value}}</label>
+        <label for="dataType">Data Type: {{ruleForm.get('dataType')?.value}}</label>
+        <label for="applicationId">Application Id: {{ruleForm.get('applicationId')?.value}}</label>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+
 </div>

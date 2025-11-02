@@ -1,4 +1,5 @@
 @import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
@@ -60,7 +61,12 @@ div.content {
     display: block;
 }
 
-table {
+.mat-paginator{
+    float: left;
+    line-height: 30px;
+}
+
+.mat-table {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
@@ -70,7 +76,11 @@ table {
 td,
 th {
     border: 1px solid #ddd;
-    padding: 8px;
+    
+
+    mat-paginator{
+        padding: 8px;
+    }
 }
 
 tr:nth-child(even) {

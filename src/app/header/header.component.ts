@@ -11,9 +11,25 @@ export class HeaderComponent {
   open: boolean = false;
 
   @Input() selectedPage: string = 'home';
+  @Input() openSubMenu: boolean = false;
   constructor(private router: Router) { }
 
   ngOnInit() {
+    this.open = this.openSubMenu;
+  }
+
+  openCloseSideBar(){
+    const sidebarElement = document.getElementById('sidebar') as HTMLElement;
+    const contentElement = document.getElementById('content') as HTMLElement;
+    if(!this.open){
+      this.open = true;
+      sidebarElement.style.display = 'block';
+      contentElement.style.marginLeft = '175px'
+    } else {
+      this.open = false;
+      sidebarElement.style.display = 'none';
+      contentElement.style.marginLeft = '0px'
+    }
   }
 
   openCloseMenu(){

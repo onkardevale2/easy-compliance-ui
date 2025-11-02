@@ -13,17 +13,24 @@ import { MatStep, MatStepper, MatStepperModule } from '@angular/material/stepper
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { SubscriptionComponent } from './subscription/subscription.component';
+import { CommonService } from './service/common.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { BrowseContextsComponent } from './browse-contexts/browse-contexts.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatFormFieldModule } from '@angular/material/form-field';
 @NgModule({
   declarations: [
     AppComponent, DashboardComponent, HeaderComponent, JobExecutionWidgetComponent,
-    BrowseJobsComponent, CreateJobComponent, SubscriptionComponent
+    BrowseJobsComponent, CreateJobComponent, SubscriptionComponent, BrowseContextsComponent
   ],
   imports: [
     BrowserModule, AppRoutingModule, ReactiveFormsModule,MatStepperModule, BrowserAnimationsModule,
-    MatSnackBarModule 
+    MatSnackBarModule , HttpClientModule, MatTableModule, MatSortModule, MatPaginatorModule, MatFormFieldModule
     
   ],
-  providers: [],
+  providers: [CommonService],
   bootstrap: [AppComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 

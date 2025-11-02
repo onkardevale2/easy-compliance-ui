@@ -1,0 +1,55 @@
+    .mat-header-cell {
+        background-color: #1e88d9;
+        color: #ffffff;
+        font-weight: bold;
+        padding: 8px 16px;
+        border-bottom: 1px solid #eee;
+        font-size: 14px;
+    }
+
+    .mat-sort-header-arrow {
+        color: #ffffff;
+    }
+
+    .mat-row {
+        min-height: 30px;
+        /* Adjust row height */
+    }
+
+    tr.mat-row{
+        height: 40px;
+    }
+
+    tr.mat-header-row {
+    height: 40px;
+    }
+
+    .mat-row:nth-child(even) {
+        background-color: #f9f9f9;
+        /* Alternate row background */
+    }
+
+    .mat-cell {
+        padding: 8px 16px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .mat-elevation-z8 {
+        /* Default elevation class */
+        box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+    }
+
+    .second{
+        min-width: 100px;
+        max-width: 100px;
+    }
+
+    .first{
+        min-width: 50px;
+        max-width: 50px;
+    }
+
+    .third{
+        min-width: 150px;
+        max-width: 150px;
+    }

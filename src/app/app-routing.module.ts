@@ -4,11 +4,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowseJobsComponent } from './browse-jobs/browse-jobs.component';
 import { CreateJobComponent } from './create-job/create-job.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
+import { BrowseContextsComponent } from './browse-contexts/browse-contexts.component';
 
 const routes: Routes = [
 
   {
     path: '', component: DashboardComponent
+  },
+  {
+    path: 'browse-contexts', component: BrowseContextsComponent
   },
   {
     path: 'browse-jobs', component: BrowseJobsComponent

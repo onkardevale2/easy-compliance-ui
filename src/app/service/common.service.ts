@@ -27,10 +27,6 @@ export class CommonService {
     return this.http.get<Rule[]>(this.apiUrl+"/api/rule");
   }
 
-  getUserById(id: number): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl}/${id}`);
-  }
-
   createContext(context: any): Observable<any> {
     return this.http.post(this.apiUrl+"/api/context", context, {responseType: 'text'}) 
     ;
@@ -41,11 +37,7 @@ export class CommonService {
     ;
   }
 
-  updateUser(id: number, user: User): Observable<User> {
-    return this.http.put<User>(`${this.apiUrl}/${id}`, user);
-  }
-
-  deleteUser(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  updateContext(contextId:any, ruleId: any): Observable<any> {
+    return this.http.get(this.apiUrl+"/api/context/map?ruleId="+ruleId+"&contextId="+contextId, {responseType: 'text'});
   }
 }

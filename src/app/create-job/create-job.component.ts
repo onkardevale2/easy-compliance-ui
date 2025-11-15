@@ -16,6 +16,8 @@ export class CreateJobComponent {
   title = 'Create Job';
   contextForm!: FormGroup;
   ruleForm!: FormGroup;
+  mappingForm!: FormGroup;
+  jobForm!: FormGroup;
   selectedBU: string = '1'; // Initial selected value
   @ViewChild('stepper')
   stepper!: MatStepper;
@@ -24,6 +26,9 @@ export class CreateJobComponent {
 
   contextCreated: boolean = false;
   ruleCreated: boolean = false;
+  mappingCreated: boolean = false;
+  jobCreated: boolean = false;
+  contextSubmitted: boolean = false;
 
   buIdMap = [
     { value: '1', label: 'Merchant' },
@@ -66,30 +71,35 @@ export class CreateJobComponent {
       sbuId: new FormControl('', [Validators.required]),
       appId: new FormControl('', [Validators.required]),
       ruleDocLink: new FormControl('', [Validators.required]),
-      targetDataObject: new FormControl('', [Validators.required])
+      targetDataObject: new FormControl('', [Validators.required]),
+      ruleId: new FormControl('')
+    });
+    this.mappingForm = new FormGroup({
+      contextId: new FormControl('', Validators.required)
+    });
+    this.jobForm = new FormGroup({
+      name: new FormControl('', Validators.required),
+      buId: new FormControl('', [Validators.required]),
+      sbuId: new FormControl('', [Validators.required]),
+      appId: new FormControl('', [Validators.required]),
+      frequency: new FormControl('', [Validators.required]),
+      expiry: new FormControl('', [Validators.required]),
+      emailList: new FormControl('', [Validators.required]),
+      ruleId: new FormControl(''),
+      automatic: new FormControl(false, [Validators.required]),
+      readyForExecution: new FormControl(false, [Validators.required])     
     });
   }
 
   submitContextForm() {
+    this.contextSubmitted = true;
     if (this.contextForm.valid) {
-      /*this.context.push({
-        'name':this.contextForm?.get('name')?.value,
-        'appId':this.contextForm.get('appId')?.value,
-        'buId':this.contextForm.get('buId')?.value,
-        'sbuId':this.contextForm.get('sbuId')?.value,
-        'dataSubjectCategory':this.contextForm.get('dataSubjectCategory')?.value,
-        'country':this.contextForm.get('country')?.value,
-        'netsRole':this.contextForm.get('netsRole')?.value,
-        'retentionPeriod':this.contextForm.get('retentionPeriod')?.value
-      });*/
-
       let formData = this.contextForm.value;
       this.commonService.createContext(formData).subscribe(result=>{
           this._snackBar.open(result, "close");
           this.contextCreated = true;
           this.contextForm.reset;
       });
-      
       //this.stepper.next();
     }
   }
@@ -98,12 +108,28 @@ export class CreateJobComponent {
     if (this.ruleForm.valid) {
       let formData = this.ruleForm.value;
       this.commonService.createRule(formData).subscribe(result=>{
-          this._snackBar.open(result, "close");
+          this._snackBar.open("Rule is created - "+result, "close");
           this.ruleCreated = true;
+          this.ruleForm.get("ruleId")?.setValue(result);
           this.ruleForm.reset;
+          this.jobForm.get("ruleId")?.setValue(result);
+          this.jobForm.get("buId")?.setValue(this.ruleForm.get("buId")?.value);
+          this.jobForm.get("sbuId")?.setValue(this.ruleForm.get("sbuId")?.value);
+          this.jobForm.get("appId")?.setValue(this.ruleForm.get("appId")?.value);
       });
       
       //this.stepper.next();
+    }
+  }
+
+  submitContextRuleMappingForm() {
+    if (this.mappingForm.valid) {
+      let formData = this.mappingForm.value;
+      this.commonService.updateContext(this.mappingForm.get("contextId")?.value, this.ruleForm.get("ruleId")?.value).subscribe(result=>{
+          this._snackBar.open("Mapping created", "close");
+          this.mappingCreated = true;
+          this.mappingForm.reset;
+      });
     }
   }
 

@@ -3,13 +3,13 @@
     <h2>{{title}}</h2>
     <mat-table mat-table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="ruleId">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="second"> Rule Id </th>
-            <td mat-cell *matCellDef="let element" class="second"> {{element.ruleId}} </td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="first"> Rule Id </th>
+            <td mat-cell *matCellDef="let element" class="first"> {{element.ruleId}} </td>
         </ng-container>
 
         <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="second"> Name </th>
-            <td mat-cell *matCellDef="let element" class="second"> {{element.name}} </td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="third"> Name </th>
+            <td mat-cell *matCellDef="let element" class="third"> {{element.name}} </td>
         </ng-container>
 
         <ng-container matColumnDef="appId">

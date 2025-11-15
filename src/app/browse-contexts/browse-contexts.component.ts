@@ -16,7 +16,7 @@ export class BrowseContextsComponent {
 
   contextList!: Context[];
 
-  displayedColumns: string[] = ['name', 'appId','buId','sbuId','netsRole','country', 'retentionPeriod'];
+  displayedColumns: string[] = ['contextId','name', 'appId','buId','sbuId','netsRole','country', 'retentionPeriod'];
   dataSource = new MatTableDataSource<Context>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;

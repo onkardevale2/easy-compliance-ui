@@ -26,8 +26,7 @@
     <i [ngClass]="open?'fa fa-caret-down': 'fa fa-caret-right'"></i>
   </button>
   <div [ngClass]="open?'dropdown-container': 'dropdown-container-closed'">
-    <a [ngClass]="{'active':selectedPage=='Create Job'}" href="/create-job">Create
-      Job</a>
+    <a [ngClass]="{'active':selectedPage=='Create Job'}" href="/create-job">Create Job <span style="font-size: 10px;color: chartreuse;">as workflow</span></a>
     <a [ngClass]="{'active':selectedPage=='Browse Contexts'}" href="/browse-contexts">Browse Contexts</a>
     <a [ngClass]="{'active':selectedPage=='Browse Rules'}" href="/browse-rules">Browse Rules</a>    
     <a [ngClass]="{'active':selectedPage=='Browse Jobs'}" href="/browse-jobs">Browse Jobs</a>

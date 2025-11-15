@@ -1,41 +1,16 @@
 <app-header [selectedPage]="title" [openSubMenu]="true"></app-header>
 <div class="content" id="content">
     <h2>{{title}}</h2>
-    <!--<table>
-        <thead>
-            <tr>
-                <th>Context ID</th>
-                <th>Name</th>
-                <th>App Id</th>
-                <th>Bu Id</th>
-                <th>Sbu Id</th>
-                
-                <th>Country</th>
-                <th>Nets Role</th>
-                <th>Retention Period</th>
-            </tr>
-        </thead>
-
-        <tbody >
-            <tr *ngFor="let context from contextList" >
-                <td>{{context.name}}</td>
-                <td>{{context.name}}</td>
-                <td>{{context.appId}}</td>
-                <td>{{context.buId}}</td>
-                <td>{{context.sbuId}}</td>
-                <td>{{context.country}}</td>
-                <td>{{context.netsRole}}</td>
-                <td>{{context.retentionPeriod}}</td>
-                
-            </tr>
-        </tbody>
-
-
-    </table>-->
+    
     <mat-table mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="contextId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="first"> Context Id </th>
+            <td mat-cell *matCellDef="let element" class="first"> {{element.contextId}} </td>
+        </ng-container>
+
         <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="second"> Name </th>
-            <td mat-cell *matCellDef="let element" class="second"> {{element.name}} </td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="third"> Name </th>
+            <td mat-cell *matCellDef="let element" class="third"> {{element.name}} </td>
         </ng-container>
 
         <ng-container matColumnDef="appId">

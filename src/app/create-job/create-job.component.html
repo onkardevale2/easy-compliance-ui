@@ -12,9 +12,7 @@
             <div class="form-group">
               <label for="name">Context Name:</label>
               <input type="text" id="name" formControlName="name">
-              <div
-                *ngIf="contextSubmitted && contextForm.get('name')?.errors?.['required']"
-                class="error-message">
+              <div *ngIf="contextSubmitted && contextForm.get('name')?.errors?.['required']" class="error-message">
                 Name is required.
               </div>
             </div>
@@ -22,8 +20,7 @@
             <div class="form-group">
               <label for="dataSubCategory">Data Subject Category</label>
               <input type="text" id="dataSubCategory" formControlName="dataSubCategory">
-              <div
-                *ngIf="contextSubmitted && contextForm.get('dataSubCategory')?.errors?.['required']"
+              <div *ngIf="contextSubmitted && contextForm.get('dataSubCategory')?.errors?.['required']"
                 class="error-message">
                 Data Subject Category is required.
               </div>
@@ -68,9 +65,7 @@
             <div class="form-group">
               <label for="country">Country</label>
               <input type="text" id="country" formControlName="country">
-              <div
-                *ngIf="contextSubmitted && contextForm.get('country')?.errors?.['required']"
-                class="error-message">
+              <div *ngIf="contextSubmitted && contextForm.get('country')?.errors?.['required']" class="error-message">
                 Country is required.
               </div>
             </div>
@@ -78,9 +73,7 @@
             <div class="form-group">
               <label for="netsRole">Role</label>
               <input type="text" id="netsRole" formControlName="netsRole">
-              <div
-                *ngIf="contextSubmitted && contextForm.get('netsRole')?.errors?.['required']"
-                class="error-message">
+              <div *ngIf="contextSubmitted && contextForm.get('netsRole')?.errors?.['required']" class="error-message">
                 Role is required.
               </div>
             </div>
@@ -88,8 +81,7 @@
             <div class="form-group">
               <label for="retentionPeriod">Retention Period</label>
               <input type="text" id="retentionPeriod" formControlName="retentionPeriod">
-              <div
-                *ngIf="contextSubmitted && contextForm.get('retentionPeriod')?.errors?.['required']"
+              <div *ngIf="contextSubmitted && contextForm.get('retentionPeriod')?.errors?.['required']"
                 class="error-message">
                 Retention Period is required.
               </div>
@@ -200,7 +192,8 @@
           <div class="form-group">
             <label for="contextId">Context Id</label>
             <input type="text" id="contextId" formControlName="contextId">
-            <div *ngIf="mappingForm.get('contextId')?.invalid && (mappingForm.get('contextId')?.dirty || mappingForm.get('contextId')?.touched)"
+            <div
+              *ngIf="mappingForm.get('contextId')?.invalid && (mappingForm.get('contextId')?.dirty || mappingForm.get('contextId')?.touched)"
               class="error-message">
               <div *ngIf="mappingForm.get('contextId')?.errors?.['required']">Enter context id</div>
             </div>
@@ -224,9 +217,9 @@
           <div class="form-group">
             <label for="name">Job Name:</label>
             <input type="text" id="name" formControlName="name">
-            <div *ngIf="jobForm.get('name')?.invalid && (jobForm.get('name')?.dirty || jobForm.get('name')?.touched)"
+            <div *ngIf="jobSubmitted && contextForm.get('name')?.errors?.['required']"
               class="error-message">
-              <div *ngIf="jobForm.get('name')?.errors?.['required']">Name is required.</div>
+             Job name is required
             </div>
           </div>
           <div class="form-group">
@@ -250,21 +243,56 @@
           </div>
 
           <div class="form-group">
-            <label for="buId">BU id</label>
-
-            <select id="buId" formControlName="buId" class="form-control">
+            <label for="frequency">Frequency</label>
+            <select id="frequency" formControlName="frequency" class="form-control">
               <option [ngValue]="null" disabled>-- Select a buId --</option>
-              <option *ngFor="let buId of buIdMap" [ngValue]="buId.value">
-                {{ buId.label }}
+              <option *ngFor="let frequency of frequencyMap" [ngValue]="frequency.value">
+                {{ frequency.label }}
               </option>
             </select>
             <!--<div *ngIf="ruleForm.get('buId')?.errors?.['required']">buId is required.</div>-->
           </div>
 
+          <div class="form-group">
+            <label for="expiry">Expiry of Execution</label>
+            <select id="expiry" formControlName="expiry" class="form-control">
+              <option [ngValue]="null" disabled>-- Select a buId --</option>
+              <option *ngFor="let expiry of expiryMap" [ngValue]="expiry.value">
+                {{ expiry.label }}
+              </option>
+            </select>
+            <!--<div *ngIf="ruleForm.get('buId')?.errors?.['required']">buId is required.</div>-->
+          </div>
+
+          <div class="form-group">
+            <label for="emailList">Contact Email</label>
+            <input type="text" id="emailList" formControlName="emailList">
+              <div *ngIf="jobSubmitted && contextForm.get('emailList')?.errors?.['required']"
+                class="error-message">
+                Email List is required.
+              </div>
+            <!--<div *ngIf="ruleForm.get('buId')?.errors?.['required']">buId is required.</div>-->
+          </div>
+
+          <div class="form-group">
+            <label for="automatic">
+               <input type="checkbox" formControlName="automatic">
+              Automatic</label>
+           
+            <!--<div *ngIf="ruleForm.get('buId')?.errors?.['required']">buId is required.</div>-->
+          </div>
+
+          <div class="form-group">
+            <label for="readyForExecution">
+               <input type="checkbox" formControlName="readyForExecution">
+              Ready For Execution</label>
+           
+            <!--<div *ngIf="ruleForm.get('buId')?.errors?.['required']">buId is required.</div>-->
+          </div>
 
 
           <!--<button type="submit" [disabled]="contextForm.invalid">Submit</button>-->
-          <button mat-button [disabled]="jobForm.invalid" (click)="submitRuleForm()">Submit</button>
+          <button mat-button [disabled]="jobForm.invalid" (click)="submitJobForm()">Submit</button>
           <button type="reset">Reset</button>
           <button mat-button matStepperNext [disabled]="!jobCreated">Next</button>
         </form>
@@ -287,9 +315,15 @@
         <br>
 
         <label>Rule Details</label>
-        <label for="name">Context Name: {{ruleForm.get('name')?.value}}</label>
+        <label for="name">Rule Name: {{ruleForm.get('name')?.value}}</label>
         <label for="targetDataObjecr">Data Type: {{ruleForm.get('targetDataObjecr')?.value}}</label>
         <label for="appId">Application Id: {{ruleForm.get('appId')?.value}}</label>
+
+        <br>
+
+        <label>Job Details</label>
+        <label for="name">Job Name: {{jobForm.get('name')?.value}}</label>
+        
       </div>
     </mat-step>
   </mat-horizontal-stepper>

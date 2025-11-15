@@ -29,7 +29,7 @@ export class CreateJobComponent {
   mappingCreated: boolean = false;
   jobCreated: boolean = false;
   contextSubmitted: boolean = false;
-
+jobSubmitted: boolean = false;
   buIdMap = [
     { value: '1', label: 'Merchant' },
     { value: '2', label: 'Security Services' },
@@ -50,6 +50,18 @@ export class CreateJobComponent {
   applicationMap = [
     { value: '81', label: 'My Test Application 1' },
     { value: '65', label: 'My Test Application 2' }
+  ];
+
+  frequencyMap = [
+    { value: 'daily', label: 'Daily' },
+    { value: 'monthly', label: 'Monthly' },
+    { value: 'yearly', label: 'Yearly' }
+  ];
+
+  expiryMap = [
+    { value: '5', label: '5 hours' },
+    { value: '10', label: '10 hours' },
+    { value: '1', label: '1 day' }
   ];
 
   constructor(private _snackBar: MatSnackBar, public commonService: CommonService) { }
@@ -79,15 +91,15 @@ export class CreateJobComponent {
     });
     this.jobForm = new FormGroup({
       name: new FormControl('', Validators.required),
-      buId: new FormControl('', [Validators.required]),
-      sbuId: new FormControl('', [Validators.required]),
-      appId: new FormControl('', [Validators.required]),
+      buId: new FormControl(''),
+      sbuId: new FormControl(''),
+      appId: new FormControl(''),
       frequency: new FormControl('', [Validators.required]),
       expiry: new FormControl('', [Validators.required]),
-      emailList: new FormControl('', [Validators.required]),
+      emailList: new FormControl(''),
       ruleId: new FormControl(''),
-      automatic: new FormControl(false, [Validators.required]),
-      readyForExecution: new FormControl(false, [Validators.required])     
+      automatic: new FormControl(false),
+      readyForExecution: new FormControl(false)     
     });
   }
 
@@ -133,24 +145,14 @@ export class CreateJobComponent {
     }
   }
 
-  submitSecondStep() {
-    if (this.ruleForm.valid) {
-      this._snackBar.open("Rule is created id - 101", "close");
-      this.stepper.next();
-    }
-  }
-
-  onSubmit(): void {
-    if (this.contextForm.valid) {
-      console.log('Form Submitted!', this.contextForm.value);
-      // Handle form submission logic here
-      this._snackBar.open("Context is created id - 201", "close");
-      //this.stepper?.selected?.completed = true;
-      //this.stepper.selected.completed = true;
-    } else {
-      console.log('Form is invalid.');
-      // Optionally, mark all fields as touched to display errors
-      this.contextForm.markAllAsTouched();
+  submitJobForm() {
+    if (this.jobForm.valid) {
+      let formData = this.jobForm.value;
+      this.commonService.createJob(formData).subscribe(result=>{
+          this._snackBar.open(result, "close");
+          this.jobCreated = true;
+          this.jobForm.reset;
+      });
     }
   }
 }

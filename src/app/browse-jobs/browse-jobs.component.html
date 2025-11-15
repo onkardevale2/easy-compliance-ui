@@ -1,61 +1,66 @@
 <app-header [selectedPage]="title" [openSubMenu]="true"></app-header>
 <div class="content" id="content">
     <h2>{{title}}</h2>
-    <table>
-        <tr>
-            <th>Company</th>
-            <th>Contact</th>
-            <th>Country</th>
-        </tr>
-        <tr>
-            <td>Alfreds Futterkiste</td>
-            <td>Maria Anders</td>
-            <td>Germany</td>
-        </tr>
-        <tr>
-            <td>Berglunds snabbköp</td>
-            <td>Christina Berglund</td>
-            <td>Sweden</td>
-        </tr>
-        <tr>
-            <td>Centro comercial Moctezuma</td>
-            <td>Francisco Chang</td>
-            <td>Mexico</td>
-        </tr>
-        <tr>
-            <td>Ernst Handel</td>
-            <td>Roland Mendel</td>
-            <td>Austria</td>
-        </tr>
-        <tr>
-            <td>Island Trading</td>
-            <td>Helen Bennett</td>
-            <td>UK</td>
-        </tr>
-        <tr>
-            <td>Königlich Essen</td>
-            <td>Philip Cramer</td>
-            <td>Germany</td>
-        </tr>
-        <tr>
-            <td>Laughing Bacchus Winecellars</td>
-            <td>Yoshi Tannamuri</td>
-            <td>Canada</td>
-        </tr>
-        <tr>
-            <td>Magazzini Alimentari Riuniti</td>
-            <td>Giovanni Rovelli</td>
-            <td>Italy</td>
-        </tr>
-        <tr>
-            <td>North/South</td>
-            <td>Simon Crowther</td>
-            <td>UK</td>
-        </tr>
-        <tr>
-            <td>Paris spécialités</td>
-            <td>Marie Bertrand</td>
-            <td>France</td>
-        </tr>
-    </table>
+    <mat-table mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="jobId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="first"> Job Id </th>
+            <td mat-cell *matCellDef="let element" class="first"> {{element.jobId}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="third"> Name </th>
+            <td mat-cell *matCellDef="let element" class="third"> {{element.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="appId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="first"> App ID </th>
+            <td mat-cell *matCellDef="let element" class="first"> {{element.appId}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="buId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="first"> BU ID </th>
+            <td mat-cell *matCellDef="let element" class="first"> {{element.buId}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="sbuId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> SBU ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.sbuId}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="frequency">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> frequency </th>
+            <td mat-cell *matCellDef="let element"> {{element.frequency}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="expiry">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> expiry </th>
+            <td mat-cell *matCellDef="let element"> {{element.expiry}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="automatic">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> automatic </th>
+            <td mat-cell *matCellDef="let element"> {{element.automatic}} </td>
+        </ng-container>
+
+         <ng-container matColumnDef="readyForExecution">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> readyForExecution </th>
+            <td mat-cell *matCellDef="let element"> {{element.readyForExecution}} </td>
+        </ng-container>
+
+         <ng-container matColumnDef="active">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> active </th>
+            <td mat-cell *matCellDef="let element"> {{element.active}} </td>
+        </ng-container>
+
+         <ng-container matColumnDef="emailList">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> emailList </th>
+            <td mat-cell *matCellDef="let element"> {{element.emailList}} </td>
+        </ng-container>
+        
+        <!-- Header Row and Data Rows -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>

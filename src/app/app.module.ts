@@ -20,10 +20,11 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { BrowseRulesComponent } from './browse-rules/browse-rules.component';
 @NgModule({
   declarations: [
     AppComponent, DashboardComponent, HeaderComponent, JobExecutionWidgetComponent,
-    BrowseJobsComponent, CreateJobComponent, SubscriptionComponent, BrowseContextsComponent
+    BrowseJobsComponent, CreateJobComponent, SubscriptionComponent, BrowseContextsComponent, BrowseRulesComponent
   ],
   imports: [
     BrowserModule, AppRoutingModule, ReactiveFormsModule,MatStepperModule, BrowserAnimationsModule,

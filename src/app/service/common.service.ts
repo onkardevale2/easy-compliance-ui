@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Context } from '../model/Context';
+import { Rule } from '../model/Rule';
 
 // Define an interface for the data you expect (optional but recommended)
 export interface User {
@@ -14,12 +15,16 @@ export interface User {
   providedIn: 'root'
 })
 export class CommonService {
-  private apiUrl = 'http://localhost:8080/api/context'; // Replace with your API endpoint
+  private apiUrl = 'http://localhost:8080'; // Replace with your API endpoint
 
   constructor(private http: HttpClient) { }
 
   getAllContexts(): Observable<Context[]> {
-    return this.http.get<Context[]>(this.apiUrl);
+    return this.http.get<Context[]>(this.apiUrl+"/api/context");
+  }
+
+  getAllRules(): Observable<Rule[]> {
+    return this.http.get<Rule[]>(this.apiUrl+"/api/rule");
   }
 
   getUserById(id: number): Observable<User> {
@@ -27,7 +32,12 @@ export class CommonService {
   }
 
   createContext(context: any): Observable<any> {
-    return this.http.post(this.apiUrl, context, {responseType: 'text'}) 
+    return this.http.post(this.apiUrl+"/api/context", context, {responseType: 'text'}) 
+    ;
+  }
+
+  createRule(rule: any): Observable<any> {
+    return this.http.post(this.apiUrl+"/api/rule", rule, {responseType: 'text'}) 
     ;
   }
 

@@ -23,8 +23,15 @@ export class CreateJobComponent {
   successSummary: boolean = true;
 
   contextCreated: boolean = false;
+  ruleCreated: boolean = false;
 
   buIdMap = [
+    { value: '1', label: 'Merchant' },
+    { value: '2', label: 'Security Services' },
+    { value: '3', label: 'Onboarding' }
+  ];
+
+  sbuIdMap = [
     { value: '1', label: 'Merchant' },
     { value: '2', label: 'Security Services' },
     { value: '3', label: 'Onboarding' }
@@ -55,11 +62,11 @@ export class CreateJobComponent {
     });
     this.ruleForm = new FormGroup({
       name: new FormControl('', Validators.required),
-      integrationType: new FormControl('', [Validators.required]),
-      retentionPeriod: new FormControl('', [Validators.required]),
-      dataType: new FormControl('', [Validators.required]),
-      applicationId: new FormControl('', [Validators.required]),
-      buId: new FormControl('', [Validators.required])
+      buId: new FormControl('', [Validators.required]),
+      sbuId: new FormControl('', [Validators.required]),
+      appId: new FormControl('', [Validators.required]),
+      ruleDocLink: new FormControl('', [Validators.required]),
+      targetDataObject: new FormControl('', [Validators.required])
     });
   }
 
@@ -81,6 +88,19 @@ export class CreateJobComponent {
           this._snackBar.open(result, "close");
           this.contextCreated = true;
           this.contextForm.reset;
+      });
+      
+      //this.stepper.next();
+    }
+  }
+
+  submitRuleForm() {
+    if (this.ruleForm.valid) {
+      let formData = this.ruleForm.value;
+      this.commonService.createRule(formData).subscribe(result=>{
+          this._snackBar.open(result, "close");
+          this.ruleCreated = true;
+          this.ruleForm.reset;
       });
       
       //this.stepper.next();

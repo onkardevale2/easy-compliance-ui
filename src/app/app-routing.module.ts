@@ -5,6 +5,7 @@ import { BrowseJobsComponent } from './browse-jobs/browse-jobs.component';
 import { CreateJobComponent } from './create-job/create-job.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { BrowseContextsComponent } from './browse-contexts/browse-contexts.component';
+import { BrowseRulesComponent } from './browse-rules/browse-rules.component';
 
 const routes: Routes = [
 
@@ -22,7 +23,10 @@ const routes: Routes = [
   },
   {
     path: 'subscriptions', component: SubscriptionComponent
-  }
+  },
+  {
+    path: 'browse-rules', component: BrowseRulesComponent
+  },
 ];
 
 

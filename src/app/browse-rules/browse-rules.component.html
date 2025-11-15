@@ -1,0 +1,46 @@
+<app-header [selectedPage]="title" [openSubMenu]="true"></app-header>
+<div class="content" id="content">
+    <h2>{{title}}</h2>
+    <mat-table mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="ruleId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="second"> Rule Id </th>
+            <td mat-cell *matCellDef="let element" class="second"> {{element.ruleId}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="second"> Name </th>
+            <td mat-cell *matCellDef="let element" class="second"> {{element.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="appId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="first"> App ID </th>
+            <td mat-cell *matCellDef="let element" class="first"> {{element.appId}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="buId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="first"> BU ID </th>
+            <td mat-cell *matCellDef="let element" class="first"> {{element.buId}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="sbuId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> SBU ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.sbuId}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="targetDataObject">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Target Data Object </th>
+            <td mat-cell *matCellDef="let element"> {{element.targetDataObject}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="ruleDocLink">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Rule Document Link </th>
+            <td mat-cell *matCellDef="let element"> {{element.ruleDocLink}} </td>
+        </ng-container>
+        
+        <!-- Header Row and Data Rows -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
